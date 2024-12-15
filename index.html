@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swipe Right to Reddit</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .swipe-area {
+            width: 90%;
+            max-width: 600px;
+            height: 300px;
+            background-color: #ffffff;
+            border: 2px dashed #0079d3;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .swipe-area p {
+            font-size: 20px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="swipe-area" id="swipeArea">
+        <p>Swipe right to go to Reddit</p>
+    </div>
+    <script>
+        let startX = 0;
+        let endX = 0;
+        const threshold = 100;
+
+        const swipeArea = document.getElementById("swipeArea");
+
+        swipeArea.addEventListener("touchstart", function(e) {
+            startX = e.touches[0].clientX;
+        });
+
+        swipeArea.addEventListener("touchend", function(e) {
+            endX = e.changedTouches[0].clientX;
+            if (endX - startX > threshold) {
+                window.location.href = "https://www.reddit.com/";
+            }
+        });
+    </script>
+</body>
+</html>
